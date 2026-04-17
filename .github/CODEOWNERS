@@ -1,0 +1,12 @@
+# CODEOWNERS for bitaiir.org.
+#
+# Paths map to owners that GitHub auto-requests for review on any PR
+# touching them.  Last matching pattern wins (unlike .gitignore).
+#
+# Review is routed to the `@bitaiir/maintainers` team — the same team
+# used on the core repo.  The team must have access to this repo for
+# auto-review-request to fire; team mentions pointing at a team
+# without access are silently ignored by GitHub.
+
+# Default — everything needs a maintainer's eyes.
+*                           @bitaiir/maintainers
