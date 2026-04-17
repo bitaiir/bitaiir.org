@@ -1,0 +1,49 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, type Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<section class="relative overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]">
+    <div class="absolute inset-x-0 top-0 h-[44rem] bg-[radial-gradient(ellipse_at_top,var(--color-aiir-500)/0.16,transparent_65%)] dark:bg-[radial-gradient(ellipse_at_top,var(--color-aiir-500)/0.22,transparent_65%)]"></div>
+  </div>
+
+  <div class="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-24 pt-20 text-center sm:px-6 sm:pt-28 md:pt-32">
+    <span class="inline-flex items-center gap-1.5 rounded-full border border-aiir-200 bg-aiir-50 px-3 py-1 text-xs font-medium text-aiir-700 dark:border-aiir-900 dark:bg-aiir-950/50 dark:text-aiir-200">
+      <span class="relative flex h-1.5 w-1.5">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-aiir-400 opacity-60"></span>
+        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-aiir-500"></span>
+      </span>
+      {t('home.hero.badge')}
+    </span>
+
+    <h1 class="mt-6 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl dark:text-white">
+      {t('home.hero.title')}
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
+      {t('home.hero.subtitle')}
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href={getRelativeLocaleUrl(locale, '/download')}
+        class="inline-flex items-center justify-center rounded-md bg-aiir-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm shadow-aiir-500/20 transition hover:bg-aiir-600 hover:shadow-aiir-500/30 focus-visible:outline-aiir-500"
+      >
+        {t('home.hero.cta_primary')}
+      </a>
+      <a
+        href={getRelativeLocaleUrl(locale, '/docs/protocol')}
+        class="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:border-aiir-400 hover:text-aiir-600 dark:border-slate-700 dark:text-slate-200 dark:hover:border-aiir-500 dark:hover:text-aiir-300"
+      >
+        {t('home.hero.cta_secondary')}
+      </a>
+    </div>
+  </div>
+</section>

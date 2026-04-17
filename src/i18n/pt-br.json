@@ -1,0 +1,105 @@
+{
+  "site": {
+    "title": "BitAiir",
+    "description": "Uma criptomoeda de pagamentos descentralizada — rápida, sem taxa e mineável por qualquer pessoa.",
+    "tagline": "Pagamentos descentralizados, instantâneos e sem taxa."
+  },
+  "nav": {
+    "home": "Início",
+    "docs": "Docs",
+    "download": "Baixar",
+    "community": "Comunidade",
+    "github": "GitHub"
+  },
+  "footer": {
+    "tagline": "Uma criptomoeda de pagamentos descentralizada — rápida, sem taxa e mineável por qualquer pessoa.",
+    "sections": {
+      "project": "Projeto",
+      "resources": "Recursos",
+      "community": "Comunidade"
+    },
+    "links": {
+      "about": "Sobre",
+      "protocol": "Protocolo",
+      "download": "Baixar",
+      "source": "Código-fonte",
+      "license": "Licença",
+      "security": "Segurança"
+    },
+    "legal": "The BitAiir Developers. Distribuído sob a licença MIT."
+  },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Claro",
+    "dark": "Escuro"
+  },
+  "lang": {
+    "switch": "Mudar idioma"
+  },
+  "home": {
+    "hero": {
+      "badge": "Pré-mainnet · Protocolo v1 (rascunho)",
+      "title": "Dinheiro descentralizado que se move em segundos.",
+      "subtitle": "BitAiir é uma criptomoeda aberta e descentralizada voltada a pagamentos. Sem taxas, confirmação em 5 segundos e um proof-of-work desenhado para manter a mineração acessível em qualquer computador comum.",
+      "cta_primary": "Baixar",
+      "cta_secondary": "Ler o protocolo"
+    },
+    "features": {
+      "eyebrow": "Princípios de design",
+      "title": "Feito para gastar, não para especular.",
+      "subtitle": "Quatro decisões moldam como o BitAiir se comporta no dia a dia.",
+      "items": {
+        "fast": {
+          "title": "Confirmação em segundos",
+          "body": "Blocos de 5 segundos significam que o pagamento se consolida enquanto você ainda olha pra tela. Carteiras podem tratar uma confirmação como final no cotidiano."
+        },
+        "zero_fees": {
+          "title": "Zero taxas de transação",
+          "body": "Sem taxa obrigatória. O anti-spam é feito por um proof-of-work mínimo em cada transação — cerca de dois segundos de CPU do remetente — então usuário honesto nunca é preterido por preço."
+        },
+        "cpu_mineable": {
+          "title": "Mineável em qualquer computador",
+          "body": "O Proof of Aiir envolve o SHA-256d num passo Argon2id de 64 MiB (memory-hard). O custo de memória aleija ASICs e GPUs, mantendo CPUs comuns competitivas."
+        },
+        "decentralized": {
+          "title": "Sem pré-mineração, sem fundação",
+          "body": "Toda moeda entra em circulação por um bloco minerado. A emissão cai pela metade com o tempo mas nunca para — uma cauda permanente de 10 AIIR mantém os mineradores pagos para sempre."
+        }
+      }
+    },
+    "how": {
+      "eyebrow": "Como funciona",
+      "title": "Um modelo familiar, ajustado para pagamentos.",
+      "subtitle": "BitAiir mantém o que funciona no Bitcoin e muda só o que atrapalha o uso cotidiano.",
+      "items": {
+        "utxo": {
+          "number": "01",
+          "title": "Contabilidade UTXO",
+          "body": "Os saldos vêm de saídas não gastas, não de um livro-razão global. Sem superfície de smart-contract, sem estado mutável compartilhado — apenas transferências assinadas."
+        },
+        "poa": {
+          "number": "02",
+          "title": "Proof of Aiir",
+          "body": "Os blocos são protegidos por um hash double-SHA-256 envolto num passo Argon2id memory-hard de 64 MiB. O resultado é uma corrida em que hardware comum vence."
+        },
+        "p2p": {
+          "number": "03",
+          "title": "Peer-to-peer por padrão",
+          "body": "Os nós trocam transações e blocos diretamente. Não há indexadores confiáveis, sequencers ou pontes custodiais no protocolo."
+        }
+      }
+    },
+    "terminal": {
+      "eyebrow": "Um binário",
+      "title": "Um nó completo num único terminal.",
+      "body": "Inicie o daemon em modo interativo e minere, envie e inspecione a blockchain a partir de uma única TUI — sem ferramenta extra.",
+      "caption": "BitAiir Core — modo interativo"
+    },
+    "cta": {
+      "title": "Quer testar?",
+      "body": "BitAiir é código aberto e pré-mainnet. Baixe a versão mais recente ou leia o protocolo para entender como cada decisão foi tomada.",
+      "primary": "Baixar os binários",
+      "secondary": "Ler o protocolo"
+    }
+  }
+}

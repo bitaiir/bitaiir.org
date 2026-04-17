@@ -1,0 +1,38 @@
+{
+  "name": "bitaiir-org",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Official website of the BitAiir cryptocurrency project — bitaiir.org",
+  "homepage": "https://bitaiir.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitaiir/bitaiir.org.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "^5.0.3",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.7",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

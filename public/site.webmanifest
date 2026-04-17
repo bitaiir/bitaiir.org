@@ -1,0 +1,21 @@
+{
+  "name": "BitAiir",
+  "short_name": "BitAiir",
+  "description": "A decentralized payment cryptocurrency — fast, zero-fee, and mineable by anyone.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1294d7",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
