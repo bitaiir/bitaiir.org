@@ -1,0 +1,105 @@
+{
+  "site": {
+    "title": "BitAiir",
+    "description": "A decentralized payment cryptocurrency — fast, zero-fee, and mineable by anyone.",
+    "tagline": "Decentralized payments, instant and fee-less."
+  },
+  "nav": {
+    "home": "Home",
+    "docs": "Docs",
+    "download": "Download",
+    "community": "Community",
+    "github": "GitHub"
+  },
+  "footer": {
+    "tagline": "A decentralized payment cryptocurrency — fast, zero-fee, and mineable by anyone.",
+    "sections": {
+      "project": "Project",
+      "resources": "Resources",
+      "community": "Community"
+    },
+    "links": {
+      "about": "About",
+      "protocol": "Protocol",
+      "download": "Download",
+      "source": "Source code",
+      "license": "License",
+      "security": "Security"
+    },
+    "legal": "The BitAiir Developers. Released under the MIT license."
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "lang": {
+    "switch": "Switch language"
+  },
+  "home": {
+    "hero": {
+      "badge": "Pre-mainnet · Protocol v1 (draft)",
+      "title": "Decentralized money that moves in seconds.",
+      "subtitle": "BitAiir is an open, decentralized payment cryptocurrency. Zero fees, 5-second confirmations, and a proof-of-work designed to keep mining accessible on any ordinary computer.",
+      "cta_primary": "Download",
+      "cta_secondary": "Read the protocol"
+    },
+    "features": {
+      "eyebrow": "Design principles",
+      "title": "Built for spending, not speculation.",
+      "subtitle": "Four decisions shape the way BitAiir feels every day.",
+      "items": {
+        "fast": {
+          "title": "Confirmations in seconds",
+          "body": "A 5-second block time means payments settle while you're still looking at the screen. Wallets can treat one confirmation as final for everyday amounts."
+        },
+        "zero_fees": {
+          "title": "Zero transaction fees",
+          "body": "No mandatory fee. Anti-spam comes from a tiny proof of work on each transaction — about two seconds of CPU from the sender — so honest users are never priced out."
+        },
+        "cpu_mineable": {
+          "title": "Mineable on any computer",
+          "body": "Proof of Aiir wraps SHA-256d in Argon2id (64 MiB memory-hard). The memory cost kneecaps ASICs and GPUs, keeping regular CPUs competitive."
+        },
+        "decentralized": {
+          "title": "No pre-mine, no foundation cut",
+          "body": "Every coin enters circulation through a mined block. Issuance halves over time but never stops — a permanent 10 AIIR tail keeps miners paid forever."
+        }
+      }
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "A familiar model, tuned for payments.",
+      "subtitle": "BitAiir keeps what works in Bitcoin and changes only what gets in the way of everyday use.",
+      "items": {
+        "utxo": {
+          "number": "01",
+          "title": "UTXO accounting",
+          "body": "Balances are derived from unspent outputs, not a global ledger. No smart-contract surface, no shared mutable state — just signed transfers."
+        },
+        "poa": {
+          "number": "02",
+          "title": "Proof of Aiir",
+          "body": "Blocks are secured by a double-SHA-256 hash wrapped in a 64 MiB memory-hard Argon2id step. The result is a mining race where commodity silicon wins."
+        },
+        "p2p": {
+          "number": "03",
+          "title": "Peer-to-peer by default",
+          "body": "Nodes gossip transactions and blocks directly. There are no trusted indexers, no sequencers, and no custodial bridges in the protocol."
+        }
+      }
+    },
+    "terminal": {
+      "eyebrow": "One binary",
+      "title": "A full node in a single terminal.",
+      "body": "Launch the daemon in interactive mode and mine, send, and inspect the chain from a single TUI — no extra tooling required.",
+      "caption": "BitAiir Core — interactive mode"
+    },
+    "cta": {
+      "title": "Ready to try it?",
+      "body": "BitAiir is open source and pre-mainnet. Grab the latest build, or read the protocol to see how each decision is justified.",
+      "primary": "Get the binaries",
+      "secondary": "Read the protocol"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+---
+// Root redirect. We keep this as a tiny static HTML that:
+//  1. tells crawlers where the default locale lives (canonical + hreflang),
+//  2. redirects no-JS visitors to /en/ via <meta http-equiv="refresh">,
+//  3. upgrades that to a language-aware redirect when JavaScript is available.
+const site = Astro.site ?? new URL('https://bitaiir.org');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BitAiir</title>
+    <link rel="canonical" href={new URL('/en/', site).toString()} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', site).toString()} />
+    <link rel="alternate" hreflang="pt-BR" href={new URL('/pt-br/', site).toString()} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/en/', site).toString()} />
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <script is:inline>
+      (function () {
+        try {
+          var supported = ['en', 'pt-br'];
+          var candidates = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || 'en'];
+          var target = 'en';
+          for (var i = 0; i < candidates.length; i++) {
+            var lang = String(candidates[i] || '').toLowerCase();
+            if (lang === 'pt-br' || lang.indexOf('pt') === 0) { target = 'pt-br'; break; }
+            if (lang.indexOf('en') === 0) { target = 'en'; break; }
+          }
+          location.replace('/' + target + '/');
+        } catch (_) {
+          location.replace('/en/');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p style="font-family: system-ui, sans-serif; padding: 2rem;">
+        Redirecting to <a href="/en/">bitaiir.org/en/</a>…
+      </p>
+    </noscript>
+  </body>
+</html>

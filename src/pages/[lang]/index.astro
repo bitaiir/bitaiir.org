@@ -1,0 +1,22 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/landing/Hero.astro';
+import Features from '~/components/landing/Features.astro';
+import HowItWorks from '~/components/landing/HowItWorks.astro';
+import Terminal from '~/components/landing/Terminal.astro';
+import CTA from '~/components/landing/CTA.astro';
+import { locales, type Locale } from '~/i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+---
+<BaseLayout locale={lang}>
+  <Hero locale={lang} />
+  <Features locale={lang} />
+  <HowItWorks locale={lang} />
+  <Terminal locale={lang} />
+  <CTA locale={lang} />
+</BaseLayout>
