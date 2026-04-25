@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations, type Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  prev: CollectionEntry<'docs'> | null;
+  next: CollectionEntry<'docs'> | null;
+}
+
+const { locale, prev, next } = Astro.props;
+const t = useTranslations(locale);
+
+function entryHref(id: string): string {
+  const [lang, ...rest] = id.split('/');
+  const last = rest[rest.length - 1];
+  const segs = last === 'index' ? rest.slice(0, -1) : rest;
+  return `/${lang}/docs/${segs.join('/')}`;
+}
+---
+<nav
+  aria-label="Docs pagination"
+  class="mt-12 flex flex-col items-stretch gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-start sm:justify-between dark:border-slate-800"
+>
+  {prev ? (
+    <a
+      href={entryHref(prev.id)}
+      class="group inline-flex flex-col rounded-lg border border-slate-200 px-4 py-2 transition hover:border-aiir-400 hover:bg-aiir-50/40 dark:border-slate-800 dark:hover:border-aiir-700 dark:hover:bg-aiir-950/20"
+    >
+      <span class="text-[11px] font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">
+        ← {t('docs.pager.previous')}
+      </span>
+      <span class="mt-0.5 text-sm font-medium text-slate-900 group-hover:text-aiir-700 dark:text-slate-100 dark:group-hover:text-aiir-300">
+        {prev.data.title}
+      </span>
+    </a>
+  ) : null}
+  {next ? (
+    <a
+      href={entryHref(next.id)}
+      class:list={[
+        'group inline-flex flex-col rounded-lg border border-slate-200 px-4 py-2 text-right transition hover:border-aiir-400 hover:bg-aiir-50/40 dark:border-slate-800 dark:hover:border-aiir-700 dark:hover:bg-aiir-950/20',
+        !prev && 'sm:ml-auto',
+      ]}
+    >
+      <span class="text-[11px] font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">
+        {t('docs.pager.next')} →
+      </span>
+      <span class="mt-0.5 text-sm font-medium text-slate-900 group-hover:text-aiir-700 dark:text-slate-100 dark:group-hover:text-aiir-300">
+        {next.data.title}
+      </span>
+    </a>
+  ) : null}
+</nav>

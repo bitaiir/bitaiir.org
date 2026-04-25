@@ -101,5 +101,50 @@
       "primary": "Baixar os binários",
       "secondary": "Ler o protocolo"
     }
+  },
+  "docs": {
+    "hub": {
+      "eyebrow": "Documentação",
+      "title": "Entenda como o BitAiir funciona.",
+      "subtitle": "Referência do protocolo, guias de início rápido e receitas operacionais para rodar o software do BitAiir.",
+      "sections": {
+        "protocol": {
+          "title": "Especificação do protocolo",
+          "description": "As regras de consenso do BitAiir — constantes, transações, blocos, Proof of Aiir e tudo que uma implementação concorrente precisa respeitar.",
+          "cta": "Ler a especificação"
+        },
+        "coming_soon": {
+          "title": "Quickstart e RPC",
+          "description": "Passo a passo de onboarding e referência de todos os métodos JSON-RPC. Chegam na próxima iteração do site.",
+          "cta": "Em breve"
+        }
+      }
+    },
+    "sidebar": {
+      "protocol_label": "Protocolo"
+    },
+    "toc": {
+      "label": "Nesta página"
+    },
+    "pager": {
+      "previous": "Anterior",
+      "next": "Próximo"
+    },
+    "breadcrumbs": {
+      "docs": "Docs"
+    },
+    "status": {
+      "draft": "Rascunho",
+      "provisional": "Provisório",
+      "stable": "Estável"
+    },
+    "translation": {
+      "banner_title": "Tradução em andamento",
+      "banner_body": "Esta página ainda não foi traduzida. O conteúdo em inglês está reproduzido abaixo.",
+      "banner_link": "Ver a versão em inglês"
+    },
+    "updated": {
+      "label": "Última atualização"
+    }
   }
 }

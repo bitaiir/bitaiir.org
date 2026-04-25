@@ -1,0 +1,43 @@
+---
+import type { Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+// Inline SVG flags — emoji flags don't render on Windows (Microsoft deliberately
+// omits regional-indicator glyphs from Segoe UI Emoji), so we ship the shapes
+// directly. Simplified designs: USA has no stars; Brazil has no motto banner
+// or stars in the celestial globe. Both are recognizable at 12-16px heights.
+const { locale, class: className = 'h-[0.9em] w-auto shrink-0 rounded-[2px]' } = Astro.props;
+---
+{locale === 'en' && (
+  <svg
+    viewBox="0 0 140 98"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class={className}
+  >
+    <rect width="140" height="98" fill="#B22234" />
+    <rect y="7.54" width="140" height="7.54" fill="#FFFFFF" />
+    <rect y="22.62" width="140" height="7.54" fill="#FFFFFF" />
+    <rect y="37.69" width="140" height="7.54" fill="#FFFFFF" />
+    <rect y="52.77" width="140" height="7.54" fill="#FFFFFF" />
+    <rect y="67.85" width="140" height="7.54" fill="#FFFFFF" />
+    <rect y="82.92" width="140" height="7.54" fill="#FFFFFF" />
+    <rect width="56" height="52.77" fill="#3C3B6E" />
+  </svg>
+)}
+{locale === 'pt-br' && (
+  <svg
+    viewBox="0 0 140 98"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    class={className}
+  >
+    <rect width="140" height="98" fill="#009C3B" />
+    <polygon points="70,12 128,49 70,86 12,49" fill="#FFDF00" />
+    <circle cx="70" cy="49" r="20" fill="#002776" />
+  </svg>
+)}

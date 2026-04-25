@@ -1,0 +1,103 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { MarkdownHeading } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import DocSidebar from '~/components/docs/DocSidebar.astro';
+import DocTOC from '~/components/docs/DocTOC.astro';
+import DocPager from '~/components/docs/DocPager.astro';
+import StatusBadge from '~/components/docs/StatusBadge.astro';
+import TranslationBanner from '~/components/docs/TranslationBanner.astro';
+import { useTranslations, type Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description?: string;
+  status?: 'draft' | 'provisional' | 'stable';
+  translated?: boolean;
+  updated?: Date;
+  headings: MarkdownHeading[];
+  peers: CollectionEntry<'docs'>[];
+  currentId: string;
+  prevEntry: CollectionEntry<'docs'> | null;
+  nextEntry: CollectionEntry<'docs'> | null;
+  enHref?: string;
+}
+
+const {
+  locale,
+  title,
+  description,
+  status,
+  translated,
+  updated,
+  headings,
+  peers,
+  currentId,
+  prevEntry,
+  nextEntry,
+  enHref,
+} = Astro.props;
+
+const t = useTranslations(locale);
+const showTranslationBanner = translated === false && typeof enHref === 'string';
+const updatedString = updated?.toISOString().slice(0, 10);
+const isSectionRoot = currentId.endsWith('/index');
+---
+<BaseLayout locale={locale} title={title} description={description}>
+  <div class="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[15rem_minmax(0,1fr)_13rem] xl:gap-12">
+    <DocSidebar locale={locale} peers={peers} currentId={currentId} />
+
+    <article class="min-w-0 max-w-3xl">
+      <nav aria-label="Breadcrumb" class="mb-4 flex flex-wrap items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+        <a href={getRelativeLocaleUrl(locale, '/docs')} class="hover:text-aiir-600 dark:hover:text-aiir-300">
+          {t('docs.breadcrumbs.docs')}
+        </a>
+        <span>/</span>
+        <a href={getRelativeLocaleUrl(locale, '/docs/protocol')} class="hover:text-aiir-600 dark:hover:text-aiir-300">
+          {t('docs.sidebar.protocol_label')}
+        </a>
+        {!isSectionRoot && (
+          <>
+            <span>/</span>
+            <span class="text-slate-700 dark:text-slate-300">{title}</span>
+          </>
+        )}
+      </nav>
+
+      <header class="mb-8">
+        <div class="flex flex-wrap items-center gap-3">
+          <h1 class="text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-white">
+            {title}
+          </h1>
+          {status && <StatusBadge locale={locale} status={status} />}
+        </div>
+        {description && (
+          <p class="mt-3 text-pretty text-base text-slate-600 dark:text-slate-300">
+            {description}
+          </p>
+        )}
+        {updatedString && (
+          <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">
+            {t('docs.updated.label')}: <time datetime={updatedString}>{updatedString}</time>
+          </p>
+        )}
+      </header>
+
+      {showTranslationBanner && (
+        <div class="mb-8">
+          <TranslationBanner locale={locale} enHref={enHref!} />
+        </div>
+      )}
+
+      <div class="prose prose-slate max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-a:text-aiir-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:text-aiir-300">
+        <slot />
+      </div>
+
+      <DocPager locale={locale} prev={prevEntry} next={nextEntry} />
+    </article>
+
+    <DocTOC locale={locale} headings={headings} />
+  </div>
+</BaseLayout>

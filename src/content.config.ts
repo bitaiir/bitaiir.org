@@ -8,7 +8,11 @@ const docs = defineCollection({
     description: z.string().optional(),
     order: z.number().optional(),
     status: z.enum(['draft', 'provisional', 'stable']).optional(),
-    updated: z.date().optional(),
+    updated: z.coerce.date().optional(),
+    // Set to false on locale stubs that have no localized body yet.
+    // The doc renderer falls back to the English counterpart and shows
+    // a "translation in progress" banner.
+    translated: z.boolean().optional().default(true),
   }),
 });
 
