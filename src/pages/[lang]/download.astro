@@ -1,0 +1,201 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CodeBlock from '~/components/CodeBlock.astro';
+import { locales, useTranslations, type Locale } from '~/i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+
+const platforms = [
+  { key: 'linux', icon: 'linux' as const },
+  { key: 'macos', icon: 'apple' as const },
+  { key: 'windows', icon: 'windows' as const },
+];
+---
+<BaseLayout locale={lang} title={t('download.title')} description={t('download.subtitle')}>
+  <section class="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+    <p class="text-sm font-semibold uppercase tracking-widest text-aiir-600 dark:text-aiir-300">
+      {t('download.eyebrow')}
+    </p>
+    <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+      {t('download.title')}
+    </h1>
+    <p class="mt-4 max-w-2xl text-pretty text-base text-slate-600 dark:text-slate-300">
+      {t('download.subtitle')}
+    </p>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6">
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 dark:border-slate-800 dark:bg-slate-900">
+      <h2 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+        {t('download.build.title')}
+      </h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+        {t('download.build.body')}
+      </p>
+
+      <ol class="mt-8 space-y-8">
+        <li>
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">01</span>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+              {t('download.build.step1_title')}
+            </h3>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            {t('download.build.step1_body')}
+          </p>
+          <CodeBlock
+            lang="bash"
+            code={t('download.build.step1_unix_cmd')}
+            copyLabel={t('common.copy')}
+            copiedLabel={t('common.copied')}
+          />
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            {t('download.build.step1_windows_note')}
+          </p>
+        </li>
+
+        <li>
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">02</span>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+              {t('download.build.step2_title')}
+            </h3>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            {t('download.build.step2_body')}
+          </p>
+          <CodeBlock
+            lang="bash"
+            code={t('download.build.step2_cmd')}
+            copyLabel={t('common.copy')}
+            copiedLabel={t('common.copied')}
+          />
+        </li>
+
+        <li>
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">03</span>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+              {t('download.build.step3_title')}
+            </h3>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            {t('download.build.step3_body')}
+          </p>
+          <div class="mt-4 grid gap-3 lg:grid-cols-2">
+            <div>
+              <p class="mb-1 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Linux / macOS</p>
+              <CodeBlock
+                lang="bash"
+                code={t('download.build.step3_unix_cmd')}
+                copyLabel={t('common.copy')}
+                copiedLabel={t('common.copied')}
+              />
+            </div>
+            <div>
+              <p class="mb-1 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Windows</p>
+              <CodeBlock
+                lang="powershell"
+                code={t('download.build.step3_windows_cmd')}
+                copyLabel={t('common.copy')}
+                copiedLabel={t('common.copied')}
+              />
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-slate-500 dark:text-slate-400">
+            {t('download.build.windows_callout')}
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6">
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 dark:border-slate-800 dark:bg-slate-950/40">
+      <h2 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+        {t('download.install.title')}
+      </h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+        {t('download.install.body')}
+      </p>
+      <CodeBlock
+        lang="bash"
+        code={t('download.install.cmd')}
+        copyLabel={t('common.copy')}
+        copiedLabel={t('common.copied')}
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 pb-16 sm:px-6">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
+          {t('download.binaries.title')}
+        </h2>
+        <p class="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+          {t('download.binaries.body')}
+        </p>
+      </div>
+    </div>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {platforms.map((p) => (
+        <div class="relative overflow-hidden rounded-xl border border-dashed border-slate-300 bg-white p-5 dark:border-slate-700 dark:bg-slate-900/40">
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              {p.icon === 'linux' && (
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                  <path d="M12 2a4 4 0 0 0-4 4c0 1.5.5 2.5 1 3.5-.5 1-1 2.5-1 4 0 1.7-1.5 3-2.5 4 0 1 1 2 2 2h9c1 0 2-1 2-2-1-1-2.5-2.3-2.5-4 0-1.5-.5-3-1-4 .5-1 1-2 1-3.5a4 4 0 0 0-4-4z" />
+                  <circle cx="10" cy="6" r="0.6" fill="currentColor" />
+                  <circle cx="14" cy="6" r="0.6" fill="currentColor" />
+                </svg>
+              )}
+              {p.icon === 'apple' && (
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                  <path d="M16.5 2c-1.5.1-3 1-3.7 2-.7 1-1.3 2.4-1.1 3.8 1.6.1 3.2-.9 4.1-2 .8-1 1.3-2.5.7-3.8zM20 17c-.3.7-.7 1.4-1.2 2-.7 1-1.5 2-2.7 2-1.1 0-1.5-.7-2.8-.7-1.4 0-1.8.7-2.9.7-1.2 0-2-1-2.7-2C7 17.5 6 14.5 7 12c.7-1.7 2.2-2.8 3.9-2.9 1.2 0 2.3.8 3 .8.7 0 2-.9 3.4-.8.6 0 2.2.2 3.3 1.7-2.7 1.6-2.3 5.5-.6 6.2z" />
+                </svg>
+              )}
+              {p.icon === 'windows' && (
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                  <path d="M3 5.5 11 4.4v7.1H3V5.5zm0 13L11 19.6v-7.1H3v6zm9-14.6 9-1.3v8.9h-9V3.9zm0 9.6h9v8.9l-9-1.3v-7.6z" />
+                </svg>
+              )}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-900 dark:text-white">
+                {t(`download.binaries.${p.key}`)}
+              </p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                {t('download.binaries.coming_soon')}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 pb-24 sm:px-6">
+    <div class="rounded-2xl border border-aiir-200 bg-aiir-50/50 p-6 sm:p-8 dark:border-aiir-900 dark:bg-aiir-950/30">
+      <h2 class="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+        {t('download.next.title')}
+      </h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+        {t('download.next.body')}
+      </p>
+      <a
+        href={getRelativeLocaleUrl(lang, '/quickstart')}
+        class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-aiir-600 hover:text-aiir-700 dark:text-aiir-300 dark:hover:text-aiir-200"
+      >
+        {t('download.next.cta')}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

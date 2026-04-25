@@ -36,6 +36,10 @@
   "lang": {
     "switch": "Mudar idioma"
   },
+  "common": {
+    "copy": "Copiar",
+    "copied": "Copiado"
+  },
   "home": {
     "hero": {
       "badge": "Pré-mainnet · Protocolo v1 (rascunho)",
@@ -145,6 +149,134 @@
     },
     "updated": {
       "label": "Última atualização"
+    }
+  },
+  "download": {
+    "eyebrow": "Baixar",
+    "title": "Coloque o BitAiir pra rodar na sua máquina.",
+    "subtitle": "BitAiir é pré-mainnet — binários pré-compilados chegam com o primeiro lançamento da mainnet. Por enquanto, compile a partir do código-fonte. O toolchain do Rust é o único pré-requisito.",
+    "build": {
+      "title": "Compilar a partir do código",
+      "body": "Funciona em Linux, macOS e Windows. Cinco minutos mais o tempo que o `cargo` leva pra baixar e compilar as dependências.",
+      "step1_title": "Instalar o Rust",
+      "step1_body": "Use o rustup. O toolchain fixado no repositório é detectado automaticamente pelo `rust-toolchain.toml` — você não precisa escolher versão manualmente.",
+      "step1_unix_cmd": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+      "step1_windows_note": "No Windows, instale o Rust pelo rustup.rs. O instalador puxa as MSVC build tools junto.",
+      "step2_title": "Clonar e compilar",
+      "step2_body": "A flag `--release` é importante — builds de debug são 5 a 10× mais lentos minerando.",
+      "step2_cmd": "git clone https://github.com/bitaiir/bitaiir.git\ncd bitaiir\ncargo build --release",
+      "step3_title": "Rodar o daemon",
+      "step3_body": "Inicie em modo interativo para usar a TUI:",
+      "step3_unix_cmd": "./target/release/bitaiird -i",
+      "step3_windows_cmd": ".\\target\\release\\bitaiird.exe -i",
+      "windows_callout": "No Windows, os executáveis ganham `.exe` e os caminhos usam contrabarra."
+    },
+    "install": {
+      "title": "Instalar globalmente com cargo",
+      "body": "Opcional — coloca `bitaiird` e `bitaiir-cli` no `PATH` pra que você consiga chamá-los de qualquer lugar.",
+      "cmd": "cargo install --path crates/bitaiir-daemon\ncargo install --path crates/bitaiir-cli"
+    },
+    "binaries": {
+      "title": "Binários pré-compilados",
+      "body": "Vamos publicar binários assinados no GitHub Releases quando a mainnet sair.",
+      "linux": "Linux (x86_64)",
+      "macos": "macOS (Apple Silicon + Intel)",
+      "windows": "Windows (x86_64)",
+      "coming_soon": "Chega com a mainnet"
+    },
+    "next": {
+      "title": "E agora?",
+      "body": "Se é a primeira vez, siga o quickstart pra ir de um clone limpo até o primeiro bloco minerado em menos de dez minutos.",
+      "cta": "Abrir o quickstart →"
+    }
+  },
+  "quickstart": {
+    "eyebrow": "Quickstart",
+    "title": "Do zero ao seu primeiro bloco.",
+    "subtitle": "Seis comandos. Um terminal. No final você terá um nó rodando, um endereço de carteira, e a capacidade de minerar e enviar AIIR.",
+    "step1_title": "Instalar o Rust",
+    "step1_body": "O BitAiir é escrito em Rust (edition 2024). Instale o toolchain com o rustup; o resto é automático.",
+    "step1_unix_cmd": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+    "step1_windows_note": "No Windows, baixe o instalador do rustup.rs — ele já vem com as MSVC build tools.",
+    "step2_title": "Clonar e compilar",
+    "step2_body": "A primeira build de release leva alguns minutos — o `cargo` cacheia tudo pra próxima.",
+    "step2_cmd": "git clone https://github.com/bitaiir/bitaiir.git\ncd bitaiir\ncargo build --release",
+    "step3_title": "Iniciar o daemon",
+    "step3_body": "Rode em modo interativo pra ter a TUI. O daemon não minera por padrão.",
+    "step3_unix_cmd": "./target/release/bitaiird -i",
+    "step3_windows_cmd": ".\\target\\release\\bitaiird.exe -i",
+    "step4_title": "Minerar o primeiro bloco",
+    "step4_body": "Dentro da TUI, digite o slash command. O subsídio do bloco é 100 AIIR; em um laptop moderno um bloco sai a cada poucos segundos.",
+    "step4_cmd": "/mine-start",
+    "step5_title": "Gerar um endereço e enviar um pagamento",
+    "step5_body": "Cada endereço começa zerado — a mineração adiciona AIIR no endereço mais recente da carteira.",
+    "step5_cmd": "/getnewaddress\n/sendtoaddress aiir1KXg... 1.0",
+    "step6_title": "Parar o daemon",
+    "step6_body": "Quando terminar, desligue o daemon pra que ele descarregue o estado e remova o arquivo cookie.",
+    "step6_cmd": "/stop",
+    "next_title": "E agora?",
+    "next_protocol": "Ler a especificação do protocolo",
+    "next_rpc": "Navegar pela referência RPC",
+    "next_community": "Encontrar a comunidade"
+  },
+  "rpc": {
+    "eyebrow": "Referência RPC",
+    "title": "Todos os comandos que o daemon entende.",
+    "subtitle": "Métodos JSON-RPC expostos pelo `bitaiird` via HTTP, espelhados como subcomandos do `bitaiir-cli`. A autenticação padrão é via cookie — veja o README do core para configuração de usuário/senha em LAN.",
+    "groups": {
+      "chain": "Cadeia",
+      "wallet": "Carteira",
+      "mining": "Mineração",
+      "peers": "Peers e rede",
+      "aliases": "Aliases",
+      "escrow": "Escrow",
+      "daemon": "Daemon"
+    },
+    "labels": {
+      "params": "Parâmetros",
+      "no_params": "Sem parâmetros.",
+      "example": "Exemplo",
+      "response": "Resposta",
+      "required": "obrigatório",
+      "optional": "opcional"
+    },
+    "intro_summary": "Resumo"
+  },
+  "community": {
+    "eyebrow": "Comunidade",
+    "title": "Fale com quem constrói o BitAiir.",
+    "subtitle": "BitAiir é tocado por voluntários e tem código aberto. Tudo acontece à vista — code reviews, discussões de design, perguntas de suporte. Escolha o canal que combina com você.",
+    "cards": {
+      "github": {
+        "title": "GitHub",
+        "body": "Código-fonte, issues, discussões, pull requests. A casa canônica de toda conversa que vira código.",
+        "cta": "github.com/bitaiir"
+      },
+      "twitter": {
+        "title": "X (Twitter)",
+        "body": "Anúncios de release, marcos e atualizações curtas. Bom pra acompanhar status sem barulho.",
+        "cta": "@BitAiir"
+      },
+      "telegram": {
+        "title": "Telegram",
+        "body": "Conversa em tempo real com a comunidade. Lugar certo pra perguntas rápidas e discussão informal.",
+        "cta": "t.me/BitAiir"
+      },
+      "contact": {
+        "title": "Contato geral",
+        "body": "Para parcerias, imprensa ou qualquer coisa que não caiba nos canais públicos acima.",
+        "cta": "contact@bitaiir.org"
+      },
+      "security": {
+        "title": "Disclosure de segurança",
+        "body": "Achou uma vulnerabilidade? Reporte de forma privada primeiro. O SECURITY.md do core tem o guia completo de disclosure.",
+        "cta": "security@bitaiir.org"
+      },
+      "contribute": {
+        "title": "Contribuir",
+        "body": "Novos contribuidores são bem-vindos. Leia o CONTRIBUTING.md do repositório do core para o fluxo — DCO sign-off, conventional commits, templates de PR.",
+        "cta": "Ler o CONTRIBUTING.md"
+      }
     }
   }
 }
