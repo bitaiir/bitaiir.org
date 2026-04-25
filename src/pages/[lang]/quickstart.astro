@@ -1,0 +1,180 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CodeBlock from '~/components/CodeBlock.astro';
+import { locales, useTranslations, type Locale } from '~/i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+---
+<BaseLayout locale={lang} title={t('quickstart.title')} description={t('quickstart.subtitle')}>
+  <section class="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+    <p class="text-sm font-semibold uppercase tracking-widest text-aiir-600 dark:text-aiir-300">
+      {t('quickstart.eyebrow')}
+    </p>
+    <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+      {t('quickstart.title')}
+    </h1>
+    <p class="mt-4 text-pretty text-base text-slate-600 dark:text-slate-300">
+      {t('quickstart.subtitle')}
+    </p>
+  </section>
+
+  <section class="mx-auto w-full max-w-3xl px-4 pb-16 sm:px-6">
+    <ol class="space-y-12">
+      <li>
+        <div class="flex items-baseline gap-3">
+          <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">01</span>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
+            {t('quickstart.step1_title')}
+          </h2>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('quickstart.step1_body')}
+        </p>
+        <CodeBlock
+          lang="bash"
+          code={t('quickstart.step1_unix_cmd')}
+          copyLabel={t('common.copy')}
+          copiedLabel={t('common.copied')}
+        />
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          {t('quickstart.step1_windows_note')}
+        </p>
+      </li>
+
+      <li>
+        <div class="flex items-baseline gap-3">
+          <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">02</span>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
+            {t('quickstart.step2_title')}
+          </h2>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('quickstart.step2_body')}
+        </p>
+        <CodeBlock
+          lang="bash"
+          code={t('quickstart.step2_cmd')}
+          copyLabel={t('common.copy')}
+          copiedLabel={t('common.copied')}
+        />
+      </li>
+
+      <li>
+        <div class="flex items-baseline gap-3">
+          <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">03</span>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
+            {t('quickstart.step3_title')}
+          </h2>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('quickstart.step3_body')}
+        </p>
+        <div class="mt-4 grid gap-3 lg:grid-cols-2">
+          <div>
+            <p class="mb-1 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Linux / macOS</p>
+            <CodeBlock
+              lang="bash"
+              code={t('quickstart.step3_unix_cmd')}
+              copyLabel={t('common.copy')}
+              copiedLabel={t('common.copied')}
+            />
+          </div>
+          <div>
+            <p class="mb-1 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Windows</p>
+            <CodeBlock
+              lang="powershell"
+              code={t('quickstart.step3_windows_cmd')}
+              copyLabel={t('common.copy')}
+              copiedLabel={t('common.copied')}
+            />
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex items-baseline gap-3">
+          <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">04</span>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
+            {t('quickstart.step4_title')}
+          </h2>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('quickstart.step4_body')}
+        </p>
+        <CodeBlock
+          lang="text"
+          code={t('quickstart.step4_cmd')}
+          copyLabel={t('common.copy')}
+          copiedLabel={t('common.copied')}
+        />
+      </li>
+
+      <li>
+        <div class="flex items-baseline gap-3">
+          <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">05</span>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
+            {t('quickstart.step5_title')}
+          </h2>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('quickstart.step5_body')}
+        </p>
+        <CodeBlock
+          lang="text"
+          code={t('quickstart.step5_cmd')}
+          copyLabel={t('common.copy')}
+          copiedLabel={t('common.copied')}
+        />
+      </li>
+
+      <li>
+        <div class="flex items-baseline gap-3">
+          <span class="font-mono text-sm font-semibold text-aiir-500 dark:text-aiir-300">06</span>
+          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">
+            {t('quickstart.step6_title')}
+          </h2>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('quickstart.step6_body')}
+        </p>
+        <CodeBlock
+          lang="text"
+          code={t('quickstart.step6_cmd')}
+          copyLabel={t('common.copy')}
+          copiedLabel={t('common.copied')}
+        />
+      </li>
+    </ol>
+  </section>
+
+  <section class="mx-auto w-full max-w-3xl px-4 pb-24 sm:px-6">
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 dark:border-slate-800 dark:bg-slate-950/40">
+      <h2 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
+        {t('quickstart.next_title')}
+      </h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>
+          <a href={getRelativeLocaleUrl(lang, '/docs/protocol')} class="inline-flex items-center gap-1 text-aiir-600 hover:text-aiir-700 dark:text-aiir-300 dark:hover:text-aiir-200">
+            {t('quickstart.next_protocol')} →
+          </a>
+        </li>
+        <li>
+          <a href={getRelativeLocaleUrl(lang, '/rpc')} class="inline-flex items-center gap-1 text-aiir-600 hover:text-aiir-700 dark:text-aiir-300 dark:hover:text-aiir-200">
+            {t('quickstart.next_rpc')} →
+          </a>
+        </li>
+        <li>
+          <a href={getRelativeLocaleUrl(lang, '/community')} class="inline-flex items-center gap-1 text-aiir-600 hover:text-aiir-700 dark:text-aiir-300 dark:hover:text-aiir-200">
+            {t('quickstart.next_community')} →
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

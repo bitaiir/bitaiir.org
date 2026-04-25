@@ -1,0 +1,79 @@
+---
+import { Code } from 'astro:components';
+import type { ShikiConfig } from 'astro';
+
+type SupportedLang =
+  | 'bash'
+  | 'shell'
+  | 'console'
+  | 'powershell'
+  | 'json'
+  | 'rust'
+  | 'toml'
+  | 'text';
+
+interface Props {
+  lang?: SupportedLang;
+  code: string;
+  copyLabel: string;
+  copiedLabel: string;
+}
+
+const { lang = 'bash', code, copyLabel, copiedLabel } = Astro.props;
+
+const themes: NonNullable<ShikiConfig['themes']> = {
+  light: 'github-light',
+  dark: 'github-dark',
+};
+---
+<div class="group not-prose relative my-4 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800">
+  <Code lang={lang} code={code} themes={themes} wrap />
+  <button
+    type="button"
+    data-copy={code}
+    data-copy-label={copyLabel}
+    data-copied-label={copiedLabel}
+    aria-label={copyLabel}
+    class="absolute right-2 top-2 inline-flex items-center gap-1 rounded-md border border-white/10 bg-slate-900/85 px-2 py-1 text-xs font-medium text-slate-200 opacity-0 backdrop-blur transition group-hover:opacity-100 hover:bg-slate-800 focus-visible:opacity-100"
+  >
+    <svg data-copy-icon aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+    <svg data-copied-icon aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden h-3.5 w-3.5">
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+    <span data-label>{copyLabel}</span>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement | null;
+    const btn = target?.closest<HTMLButtonElement>('button[data-copy]');
+    if (!btn) return;
+
+    const code = btn.dataset.copy ?? '';
+    const copyLabel = btn.dataset.copyLabel ?? 'Copy';
+    const copiedLabel = btn.dataset.copiedLabel ?? 'Copied';
+    const labelEl = btn.querySelector<HTMLElement>('[data-label]');
+    const copyIcon = btn.querySelector<HTMLElement>('[data-copy-icon]');
+    const copiedIcon = btn.querySelector<HTMLElement>('[data-copied-icon]');
+
+    navigator.clipboard
+      .writeText(code)
+      .then(() => {
+        if (labelEl) labelEl.textContent = copiedLabel;
+        copyIcon?.classList.add('hidden');
+        copiedIcon?.classList.remove('hidden');
+        setTimeout(() => {
+          if (labelEl) labelEl.textContent = copyLabel;
+          copyIcon?.classList.remove('hidden');
+          copiedIcon?.classList.add('hidden');
+        }, 1200);
+      })
+      .catch(() => {
+        /* clipboard blocked — silently no-op */
+      });
+  });
+</script>

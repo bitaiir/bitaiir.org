@@ -36,6 +36,10 @@
   "lang": {
     "switch": "Switch language"
   },
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied"
+  },
   "home": {
     "hero": {
       "badge": "Pre-mainnet · Protocol v1 (draft)",
@@ -145,6 +149,134 @@
     },
     "updated": {
       "label": "Last updated"
+    }
+  },
+  "download": {
+    "eyebrow": "Download",
+    "title": "Get BitAiir running on your machine.",
+    "subtitle": "BitAiir is pre-mainnet — pre-built binaries land with the first mainnet release. For now, build from source. The Rust toolchain is the only prerequisite.",
+    "build": {
+      "title": "Build from source",
+      "body": "Works on Linux, macOS, and Windows. Five minutes plus the time `cargo` takes to fetch and compile dependencies.",
+      "step1_title": "Install Rust",
+      "step1_body": "Use rustup. The toolchain pinned in the repo is automatically picked up by `rust-toolchain.toml` — no manual version selection needed.",
+      "step1_unix_cmd": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+      "step1_windows_note": "On Windows, install Rust from rustup.rs. The installer pulls in the MSVC build tools.",
+      "step2_title": "Clone and build",
+      "step2_body": "The `--release` flag is important — debug builds are 5-10× slower at mining.",
+      "step2_cmd": "git clone https://github.com/bitaiir/bitaiir.git\ncd bitaiir\ncargo build --release",
+      "step3_title": "Run the daemon",
+      "step3_body": "Launch in interactive mode for the TUI:",
+      "step3_unix_cmd": "./target/release/bitaiird -i",
+      "step3_windows_cmd": ".\\target\\release\\bitaiird.exe -i",
+      "windows_callout": "On Windows, executables get the `.exe` extension and paths use backslashes."
+    },
+    "install": {
+      "title": "Install globally with cargo",
+      "body": "Optional — gets `bitaiird` and `bitaiir-cli` on your `PATH` so you can call them from anywhere.",
+      "cmd": "cargo install --path crates/bitaiir-daemon\ncargo install --path crates/bitaiir-cli"
+    },
+    "binaries": {
+      "title": "Pre-built binaries",
+      "body": "We will publish signed binaries on GitHub Releases when mainnet ships.",
+      "linux": "Linux (x86_64)",
+      "macos": "macOS (Apple Silicon + Intel)",
+      "windows": "Windows (x86_64)",
+      "coming_soon": "Coming with mainnet"
+    },
+    "next": {
+      "title": "What now?",
+      "body": "If this is your first time, follow the quickstart to get from a clean clone to your first mined block in under ten minutes.",
+      "cta": "Open the quickstart →"
+    }
+  },
+  "quickstart": {
+    "eyebrow": "Quickstart",
+    "title": "From zero to your first block.",
+    "subtitle": "Six commands. One terminal. By the end you'll have a running node, a wallet address, and the ability to mine and send AIIR.",
+    "step1_title": "Install Rust",
+    "step1_body": "BitAiir is written in Rust (edition 2024). Install the toolchain with rustup; everything else is handled automatically.",
+    "step1_unix_cmd": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+    "step1_windows_note": "On Windows, download the installer from rustup.rs — it bundles the MSVC build tools.",
+    "step2_title": "Clone and build",
+    "step2_body": "The release build takes a few minutes the first time around — `cargo` caches everything for the next run.",
+    "step2_cmd": "git clone https://github.com/bitaiir/bitaiir.git\ncd bitaiir\ncargo build --release",
+    "step3_title": "Start the daemon",
+    "step3_body": "Run in interactive mode to get the TUI. The daemon does not mine by default.",
+    "step3_unix_cmd": "./target/release/bitaiird -i",
+    "step3_windows_cmd": ".\\target\\release\\bitaiird.exe -i",
+    "step4_title": "Mine your first block",
+    "step4_body": "Inside the TUI, type the slash command. Block subsidy is 100 AIIR; on a modern laptop a block lands every few seconds.",
+    "step4_cmd": "/mine-start",
+    "step5_title": "Generate an address and send a payment",
+    "step5_body": "Each address starts empty — mining adds AIIR to the wallet's most recent address.",
+    "step5_cmd": "/getnewaddress\n/sendtoaddress aiir1KXg... 1.0",
+    "step6_title": "Stop the daemon",
+    "step6_body": "When you're done, shut the daemon down so it can flush state and remove the cookie file.",
+    "step6_cmd": "/stop",
+    "next_title": "Where to next?",
+    "next_protocol": "Read the protocol specification",
+    "next_rpc": "Browse the RPC reference",
+    "next_community": "Find the community"
+  },
+  "rpc": {
+    "eyebrow": "RPC reference",
+    "title": "Every command the daemon understands.",
+    "subtitle": "JSON-RPC methods exposed by `bitaiird` over HTTP, mirrored as `bitaiir-cli` subcommands. Authentication is cookie-based by default — see the core README for LAN-style user/password setup.",
+    "groups": {
+      "chain": "Chain",
+      "wallet": "Wallet",
+      "mining": "Mining",
+      "peers": "Peers & networking",
+      "aliases": "Aliases",
+      "escrow": "Escrow",
+      "daemon": "Daemon"
+    },
+    "labels": {
+      "params": "Parameters",
+      "no_params": "No parameters.",
+      "example": "Example",
+      "response": "Response",
+      "required": "required",
+      "optional": "optional"
+    },
+    "intro_summary": "Summary"
+  },
+  "community": {
+    "eyebrow": "Community",
+    "title": "Talk to the BitAiir builders.",
+    "subtitle": "BitAiir is volunteer-run and open source. Everything happens in the open — code reviews, design discussions, support questions. Pick the channel that fits.",
+    "cards": {
+      "github": {
+        "title": "GitHub",
+        "body": "Source code, issues, discussions, pull requests. The canonical home of every conversation that turns into code.",
+        "cta": "github.com/bitaiir"
+      },
+      "twitter": {
+        "title": "X (Twitter)",
+        "body": "Release announcements, milestones, and short-form updates. Lightweight follow for status without the firehose.",
+        "cta": "@BitAiir"
+      },
+      "telegram": {
+        "title": "Telegram",
+        "body": "Real-time chat with the community. Best place for quick questions and informal discussion.",
+        "cta": "t.me/BitAiir"
+      },
+      "contact": {
+        "title": "General contact",
+        "body": "For partnerships, press, or anything that doesn't fit the public channels above.",
+        "cta": "contact@bitaiir.org"
+      },
+      "security": {
+        "title": "Security disclosure",
+        "body": "Found a vulnerability? Please report it privately first. The core repo's SECURITY.md has full disclosure guidelines.",
+        "cta": "security@bitaiir.org"
+      },
+      "contribute": {
+        "title": "Contribute",
+        "body": "New contributors welcome. Read the core repo's CONTRIBUTING.md for the workflow — DCO sign-off, conventional commits, PR templates.",
+        "cta": "Read CONTRIBUTING.md"
+      }
     }
   }
 }
