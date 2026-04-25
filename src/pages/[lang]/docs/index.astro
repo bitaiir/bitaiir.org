@@ -1,0 +1,54 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { locales, useTranslations, type Locale } from '~/i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const t = useTranslations(lang);
+---
+<BaseLayout locale={lang} title={t('docs.hub.title')} description={t('docs.hub.subtitle')}>
+  <div class="mx-auto w-full max-w-4xl px-4 py-16 sm:px-6 sm:py-20">
+    <p class="text-sm font-semibold uppercase tracking-widest text-aiir-600 dark:text-aiir-300">
+      {t('docs.hub.eyebrow')}
+    </p>
+    <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+      {t('docs.hub.title')}
+    </h1>
+    <p class="mt-4 max-w-2xl text-pretty text-base text-slate-600 dark:text-slate-300">
+      {t('docs.hub.subtitle')}
+    </p>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      <a
+        href={getRelativeLocaleUrl(lang, '/docs/protocol')}
+        class="group rounded-xl border border-slate-200 bg-white p-6 transition hover:border-aiir-400 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-aiir-700"
+      >
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">
+          {t('docs.hub.sections.protocol.title')}
+        </h2>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('docs.hub.sections.protocol.description')}
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-aiir-600 group-hover:text-aiir-700 dark:text-aiir-300 dark:group-hover:text-aiir-200">
+          {t('docs.hub.sections.protocol.cta')} →
+        </span>
+      </a>
+
+      <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-900/40">
+        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">
+          {t('docs.hub.sections.coming_soon.title')}
+        </h2>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          {t('docs.hub.sections.coming_soon.description')}
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+          {t('docs.hub.sections.coming_soon.cta')}
+        </span>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

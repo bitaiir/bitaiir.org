@@ -19,7 +19,6 @@ const site = Astro.site ?? new URL('https://bitaiir.org');
     <script is:inline>
       (function () {
         try {
-          var supported = ['en', 'pt-br'];
           var candidates = navigator.languages && navigator.languages.length
             ? navigator.languages
             : [navigator.language || 'en'];

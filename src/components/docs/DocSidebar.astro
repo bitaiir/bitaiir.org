@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { useTranslations, type Locale } from '~/i18n/ui';
+
+interface Props {
+  locale: Locale;
+  peers: CollectionEntry<'docs'>[];
+  currentId: string;
+}
+
+const { locale, peers, currentId } = Astro.props;
+const t = useTranslations(locale);
+
+function entryHref(id: string): string {
+  const [lang, ...rest] = id.split('/');
+  const last = rest[rest.length - 1];
+  const segs = last === 'index' ? rest.slice(0, -1) : rest;
+  return `/${lang}/docs/${segs.join('/')}`;
+}
+---
+<aside class="lg:sticky lg:top-20 lg:self-start">
+  <details class="group lg:open:!block" open>
+    <summary class="mb-3 flex cursor-pointer list-none items-center justify-between rounded-md bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-900 lg:pointer-events-none lg:bg-transparent lg:px-0 lg:py-0 dark:bg-slate-900 dark:text-slate-100 lg:dark:bg-transparent">
+      <span class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400">
+        {t('docs.sidebar.protocol_label')}
+      </span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 transition group-open:rotate-180 lg:hidden">
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </summary>
+    <nav class="text-sm">
+      <ul class="space-y-0.5">
+        {peers.map((p) => {
+          const active = p.id === currentId;
+          return (
+            <li>
+              <a
+                href={entryHref(p.id)}
+                aria-current={active ? 'page' : undefined}
+                class:list={[
+                  'block rounded-md px-3 py-1.5 transition',
+                  active
+                    ? 'bg-aiir-50 font-medium text-aiir-700 dark:bg-aiir-950/60 dark:text-aiir-200'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/60 dark:hover:text-slate-100',
+                ]}
+              >
+                {p.data.title}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </details>
+</aside>

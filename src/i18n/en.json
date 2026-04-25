@@ -101,5 +101,50 @@
       "primary": "Get the binaries",
       "secondary": "Read the protocol"
     }
+  },
+  "docs": {
+    "hub": {
+      "eyebrow": "Documentation",
+      "title": "Learn how BitAiir works.",
+      "subtitle": "Protocol reference, quickstart guides, and operational recipes for running the BitAiir software.",
+      "sections": {
+        "protocol": {
+          "title": "Protocol specification",
+          "description": "The consensus rules of BitAiir — constants, transactions, blocks, Proof of Aiir, and everything else a competing implementation must match.",
+          "cta": "Read the spec"
+        },
+        "coming_soon": {
+          "title": "Quickstart & RPC",
+          "description": "Step-by-step onboarding and a reference for every JSON-RPC method. Coming in the next iteration of the site.",
+          "cta": "Coming soon"
+        }
+      }
+    },
+    "sidebar": {
+      "protocol_label": "Protocol"
+    },
+    "toc": {
+      "label": "On this page"
+    },
+    "pager": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "breadcrumbs": {
+      "docs": "Docs"
+    },
+    "status": {
+      "draft": "Draft",
+      "provisional": "Provisional",
+      "stable": "Stable"
+    },
+    "translation": {
+      "banner_title": "Translation in progress",
+      "banner_body": "This page hasn't been translated yet. The English content is shown below.",
+      "banner_link": "View the English page"
+    },
+    "updated": {
+      "label": "Last updated"
+    }
   }
 }
